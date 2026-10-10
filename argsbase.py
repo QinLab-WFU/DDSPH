@@ -6,11 +6,13 @@ def get_baseargs():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--save-dir", type=str, default="./result/")
+    parser.add_argument("--prefix", type=str, default="")
     parser.add_argument("--save-mat", type=bool, default=True)
-    parser.add_argument("--save-model", type=bool, default=False)
+    parser.add_argument("--save-model", type=bool, default=True)
 
     parser.add_argument("--save_csv", type=bool, default=False)
 
+    # parser.add_argument("--is-train", default=True)
     parser.add_argument("--valid", default=True)
     parser.add_argument("--calc-crc", type=bool, default=False)
     parser.add_argument("--calc-recall", type=bool, default=False)
@@ -20,6 +22,10 @@ def get_baseargs():
     parser.add_argument("-vit-use", type=bool, default=True)
 
     parser.add_argument("--pretrained", type=str, default="")
+    
+    # 数据集路径配置，如果未指定则使用train/base.py中的默认路径
+    parser.add_argument("--data-dir", type=str, default="", 
+                       help="数据集根目录路径，如果未指定则使用默认路径")
 
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--max-words", type=int, default=32)
@@ -40,5 +46,3 @@ def get_baseargs():
                         help="Proportion of training to perform linear learning rate warmup for. E.g., 0.1 = 10%% of training.")
 
     return parser
-
-
